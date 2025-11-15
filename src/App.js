@@ -1,10 +1,15 @@
-import "./styles.css";
+const API_URL = "https://umb-web-taller.onrender.com";
 
-export default function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
+useEffect(() => {
+  fetch(API_URL)
+    .then((res) => res.json())
+    .then((data) => setTareas(data));
+}, []);
+
+function agregarTarea() {
+  fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ titulo: nuevaTarea }),
+  });
 }
